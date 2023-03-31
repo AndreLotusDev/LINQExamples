@@ -1,0 +1,27 @@
+﻿Intersect and Except - coding exercise 1
+Implement the CountCommonWords method, which given two collections of strings will return the count of the words that belong to both of those collections. Please note that the casing of the words does not matter.
+
+For example, for the following collections:
+
+{"aaa", "BBB", "CCC"}
+
+{"aaa", "ccc", "DDD"}
+
+The result shall be 2 because there are two words that occur in both collections: "aaa" and "ccc". As we said, it doesn't matter if "ccc" is lower case in one collection and upper case in the other.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static int CountCommonWords(
+            IEnumerable<string> words1,
+            IEnumerable<string> words2)
+        {
+            return words1.Select(s => s.ToLower()).Intersect(words2.Select(s => s.ToLower())).Count();
+        }
+    }
+}

@@ -1,0 +1,58 @@
+﻿Aggregate - refactoring challenge
+Using LINQ's Aggregate method refactor the Fibonacci method.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method using Aggregate
+        public static IEnumerable<int> Fibonacci_Refactored(int n)
+        {
+           if (n < 1)
+    {
+        throw new ArgumentException(
+            $"Can't generate Fibonacci sequence " +
+            $"for {n} elements. N must be a " +
+            $"positive number");
+    }
+
+    return Enumerable.Range(0, n).Aggregate(
+        new List<int> { 0 },
+        (acc, x) =>
+        {
+            if (x < 1) return acc;
+            if (x == 1) acc.Add(1);
+            else acc.Add(acc[x - 2] + acc[x - 1]);
+            return acc;
+        });
+        }
+
+        //do not modify this method
+        public static IEnumerable<int> Fibonacci(int n)
+        {
+            if (n < 1)
+            {
+                throw new ArgumentException(
+                    $"Can't generate Fibonacci sequence " +
+                    $"for {n} elements. N must be a " +
+                    $"positive number");
+            }
+
+            if (n == 1)
+            {
+                return new[] { 0 };
+            }
+            var result = new List<int> { 0, 1 };
+            for(int i = 1; i < n - 1; ++i)
+            {
+                result.Add(result[i - 1] + result[i]);
+            }
+            return result;
+        }
+    }
+}

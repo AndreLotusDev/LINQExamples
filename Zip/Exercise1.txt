@@ -1,0 +1,47 @@
+﻿Zip - coding exercise 1
+Imagine you work on a program which imports data stored in Excel spreadsheets. There is a need to import dates, but each part of a date - year, month, and day - is stored in a separate column. The data from each column is imported into your program as a collection of integers.
+
+Implement the BuildDates method, which given collections of years, months and days will build a collection of DateTimes. The result shall be ordered from the oldest date to the newest.
+
+For example, for the following input:
+
+years: {2020, 1990, 2010}
+
+months: {3, 5, 1}
+
+days {1, 5, 17}
+
+...the following dates shall be returned
+
+new DateTime(1990, 5, 5)
+
+new DateTime(2010, 1, 17)
+
+new DateTime(2020, 3, 1)
+
+Please assume the input is valid, which means:
+
+all collections have the same length
+
+all values are valid, which means valid dates can be built from them (for example months range from 1 to 12)
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static IEnumerable<DateTime> BuildDates(
+            IEnumerable<int> years,
+            IEnumerable<int> months,
+            IEnumerable<int> days)
+        {
+           return years.Zip(months, (y, m) => new { Year = y, Month = m })
+        .Zip(days, (ym, d) => new DateTime(ym.Year, ym.Month, d))
+        .OrderBy(date => date);
+        }
+    }
+}

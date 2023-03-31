@@ -1,0 +1,120 @@
+﻿Intersect and Except - refactoring challenge
+Refactor the GetRoutesInfo method using LINQ.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static IEnumerable<string> 
+            GetRoutesInfo_Refactored(
+                Route route1, Route route2)
+        {
+            var sharedPoints = route1.RoutePoints.Intersect(route2.RoutePoints);
+            var unsharedPoints1 = route1.RoutePoints.Except(sharedPoints);
+            var unsharedPoints2 = route2.RoutePoints.Except(sharedPoints);
+        
+            var result = sharedPoints.Select(p => $"Shared point {p.Name} at {p.Point}").ToList();
+            result.AddRange(unsharedPoints1.Select(p => $"Unshared point {p.Name} at {p.Point}"));
+            result.AddRange(unsharedPoints2.Select(p => $"Unshared point {p.Name} at {p.Point}"));
+        
+            return result;
+        }
+
+        //do not modify this method
+        public static IEnumerable<string> GetRoutesInfo(
+            Route route1, Route route2)
+        {
+            var result = new List<string>();
+            var sharedPoints = new List<RoutePoint>();
+            foreach (var routePoint1 in route1.RoutePoints)
+            {
+                foreach (var routePoint2 in route2.RoutePoints)
+                {
+                    if (routePoint1.Equals(routePoint2))
+                    {
+                        if (!sharedPoints.Contains(routePoint1))
+                        {
+                            sharedPoints.Add(routePoint1);
+                            result.Add($"Shared point " +
+                            $"{routePoint1.Name}" +
+                            $" at {routePoint1.Point}");
+                        }
+                    }
+                }
+            }
+            foreach(var routePoint in route1.RoutePoints)
+            {
+                if(!sharedPoints.Contains(routePoint))
+                {
+                    result.Add(
+                        $"Unshared point " +
+                        $"{routePoint.Name}" +
+                        $" at {routePoint.Point}");
+                }
+            }
+            foreach (var routePoint in route2.RoutePoints)
+            {
+                if (!sharedPoints.Contains(routePoint))
+                {
+                    result.Add(
+                        $"Unshared point " +
+                        $"{routePoint.Name}" +
+                        $" at {routePoint.Point}");
+                }
+            }
+
+            return result;
+        }
+    }
+
+    public class Route
+    {
+        public IEnumerable<RoutePoint> RoutePoints { get; }
+        public Route(IEnumerable<RoutePoint> routePoints)
+        {
+            RoutePoints = routePoints;
+        }
+
+        public override string ToString()
+        {
+           return $"RoutePoints: ({string.Join("; ", RoutePoints)})";
+        }
+    }
+
+    public struct RoutePoint
+    {
+        public string Name { get; }
+        public Point Point { get; }
+        public RoutePoint(string name, Point point)
+        {
+            Name = name;
+            Point = point;
+        }
+        public override string ToString()
+        {
+            return $"{Name} ({Point})";
+        }
+    }
+    
+    public struct Point
+    {
+        public double X { get; }
+        public double Y { get; }
+
+        public Point(double x, double y)
+        {
+            X = x; 
+            Y = y;
+        }
+
+        public override string ToString()
+        {
+            return $"X: {X}, Y: {Y}";
+        }
+    }
+}

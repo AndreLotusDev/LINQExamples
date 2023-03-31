@@ -1,0 +1,37 @@
+﻿Zip - coding exercise 2
+Implement the GetDaysDifferencesBetweenDates method, which given an ordered collection of dates will return a collection of strings with information on how many days have passed between dates in the collection.
+
+For example, for the following dates:
+
+new DateTime(1899, 1, 1),
+
+new DateTime(1899, 4, 12)
+
+new DateTime(1899, 12, 31)
+
+...the result shall be:
+
+"It's been 101 days between 1899-01-01 and 1914-04-12"
+
+"It's been 263 days between 1914-04-12 and 1929-12-31"
+
+To format dates to string, please use the date.ToString("yyyy-MM-dd") formatting.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static IEnumerable<string>
+            GetDaysDifferencesBetweenDates(
+                IEnumerable<DateTime> dates)
+        {
+             return dates.Zip(dates.Skip(1), (first, second) => $"It's been " +
+               $"{(second - first).TotalDays} days " +
+               $"between {first.ToString("yyyy-MM-dd")} " +
+               $"and {second.ToString("yyyy-MM-dd")}");
+        }
+    }
+}

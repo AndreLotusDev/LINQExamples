@@ -1,0 +1,122 @@
+﻿Join - coding exercise 2
+Imagine you are working on a website of an online store selling groceries. There is a need to provide functionality that will enable printing a summary of all orders that have been made, including data of customers and the items that have been bought.
+
+Let's say that this website uses a database with the following tables:
+
+Customer (int id, string name)
+
+Item (int id, string name)
+
+Order (int customerId, int itemId, int count)
+
+Implement the GetOrdersData method, which given collections of customers, items and orders, will produce a collection of strings containing the orders data.
+
+For example, for the following data:
+
+Customers
+
+Id: 1, Name: John Smith
+
+Id: 2, Name: Stephanie Green
+
+Id: 3, Name: Marting Brown
+
+Items
+
+Id: 1, Name: Tahini
+
+Id: 2, Name: Maple Syrup
+
+Id: 3, Name: Peanut Butter
+
+Orders
+
+CustomerId: 1, ItemId: 2, Count: 2
+
+CustomerId: 2, ItemId: 3, Count: 1
+
+CustomerId: 3, ItemId: 1, Count: 4
+
+The result shall be the following collection of strings:
+
+"Customer: John Smith, Item: Maple Syrup, Count: 2",
+
+"Customer: Stephanie Green, Item: Peanut Butter, Count: 1",
+
+"Customer: Martin Brown, Item: Tahini, Count: 4"
+
+Assume all input collections are non-empty.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static IEnumerable<string> GetOrdersData(
+            IEnumerable<Customer> customers,
+            IEnumerable<Item> items,
+            IEnumerable<Order> orders)
+        {
+            return from order in orders
+               join customer in customers on order.CustomerId equals customer.Id
+               join item in items on order.ItemId equals item.Id
+               select $"Customer: {customer.Name}, Item: {item.Name}, Count: {order.Count}";
+        }
+    }
+    
+    public class Customer
+    {
+        public int Id { get; }
+        public string Name { get; }
+
+        public Customer(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Name: {Name}";
+        }
+    }
+
+    public class Order
+    {
+        public int CustomerId { get; }
+        public int ItemId { get; }
+        public int Count { get; }
+
+        public Order(int customerId, int itemId, int count)
+        {
+            CustomerId = customerId;
+            ItemId = itemId;
+            Count = count;
+        }
+
+        public override string ToString()
+        {
+            return $"CustomerId: {CustomerId}, ItemId: {ItemId}, Count: {Count}";
+        }
+    }
+
+    public class Item
+    {
+        public int Id { get; }
+        public string Name { get; }
+
+        public Item(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Name: {Name}";
+        }
+    }
+}
