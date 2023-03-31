@@ -1,0 +1,33 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static bool IsAnySequenceTooLong_Refactored(IEnumerable<IEnumerable<int>> numberSequences, int maxLength)
+        {
+            return numberSequences.Any(a => a.Count() > maxLength);
+        }
+        
+        //do not modify this method
+        public static bool IsAnySequenceTooLong(IEnumerable<IEnumerable<int>> numberSequences, int maxLength)
+        {
+            foreach(var numberSequence in numberSequences)
+            {
+                var count = 0;
+                foreach(var number in numberSequence)
+                {
+                    ++count;
+                }
+                if(count > maxLength)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+}

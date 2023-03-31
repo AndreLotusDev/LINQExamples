@@ -1,0 +1,14 @@
+﻿using System;
+using System.Linq;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static bool AreAllNumbersDivisibleBy10(int[] numbers)
+        {
+            //TODO your code goes here
+            return numbers.All(a => (a % 10) == 0);
+        }
+    }
+}

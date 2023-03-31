@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static bool IsAnyNumberNegative(IEnumerable<int> numbers)
+        {
+            var isThereAnyNegativeNumber = numbers.Any(n => n < 0);
+            Console.WriteLine(isThereAnyNegativeNumber);
+            return isThereAnyNegativeNumber;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+﻿OrderBy - coding exercise 1
+Using LINQ, implement the OrderFromLongestToShortest method, which takes a collection of strings, and returns those strings ordered from longest to shortest.
+
+For example, for {"bb", "a", "ccc"} the result should be {"ccc", "bb", "a"}
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static IEnumerable<string> OrderFromLongestToShortest(IEnumerable<string> words)
+        {
+            //TODO your code goes here
+            return words.OrderByDescending(w => w.Length);
+        }
+    }
+}

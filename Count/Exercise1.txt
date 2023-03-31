@@ -1,0 +1,15 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static int CountAllLongWords(IEnumerable<string> words)
+        {
+            //TODO your code goes here
+            return words.Count(c => c.Length > 10);
+        }
+    }
+}

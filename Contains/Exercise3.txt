@@ -1,0 +1,35 @@
+﻿Contains - refactoring challenge
+Using LINQ, refactor the ContainsBannedWords method.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static bool ContainsBannedWords_Refactored(IEnumerable<string> words, IEnumerable<string> bannedWords)
+        {
+            //TODO your code goes here
+            return words.Any(a => bannedWords.Contains(a));
+        }
+        
+        //do not modify this method
+        public static bool ContainsBannedWords(IEnumerable<string> words, IEnumerable<string> bannedWords)
+        {
+            foreach(var word in words)
+            {
+                foreach(var bannedWord in bannedWords)
+                {
+                    if(word == bannedWord)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+}

@@ -1,0 +1,49 @@
+﻿Contains - coding exercise 2
+Implement the CountFriendsOf method. This method takes the friend parameter and a collection of people. We want to count all those people, who have the friend amongst their friends.
+
+For example, in this case, the result of the method should be 3 because there are 3 people who have friend in their Friends collection.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static int CountFriendsOf(Friend friend, IEnumerable<Person> people)
+        {
+            return people.Count(c => c.Friends.Contains(friend));
+        }
+    }
+    
+    public class Person
+    {
+        public string Name {get;}
+        public IEnumerable<Friend> Friends {get;}
+        
+        public Person(string name, IEnumerable<Friend> friends)
+        {
+            Name = name;
+            Friends = friends;
+        }
+    }
+    
+    public class Friend
+    {
+        public string Name {get;}
+    }
+    
+    public class FriendNameComparer : IEqualityComparer<Friend>
+    {
+        public bool Equals(Friend x, Friend y)
+        {
+            return x.Name == y.Name;
+        }
+        
+         public int GetHashCode(Friend friend)
+        {
+            return friend.Name.GetHashCode();
+        }
+    }
+}

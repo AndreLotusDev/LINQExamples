@@ -1,0 +1,36 @@
+﻿using System;
+using System.Linq;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static bool AreAllNamesValid_Refactored(string[] names)
+        {
+            //TODO your code goes here
+            return !names.Any(a => char.IsLower(a[0]) || a.Length < 2 || a.Length > 25);
+        }
+        
+        //do not modify this method
+        public static bool AreAllNamesValid(string[] names)
+        {
+            foreach(var name in names)
+            {
+                if(char.IsLower(name[0]))
+                {
+                    return false;
+                }
+                if(name.Length < 2)
+                {
+                    return false;
+                }
+                if(name.Length > 25)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+}
