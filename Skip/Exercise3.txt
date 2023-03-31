@@ -1,0 +1,36 @@
+﻿Skip - refactoring challenge
+Refactor the GetAllAfterFirstDividableBy100 method using LINQ.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static IEnumerable<int> GetAllAfterFirstDividableBy100_Refactored(IEnumerable<int> numbers)
+        {
+            return numbers.SkipWhile(s => !(s % 100 == 0));
+        }
+        
+        public static IEnumerable<int> GetAllAfterFirstDividableBy100(IEnumerable<int> numbers)
+        {
+            var result = new List<int>();
+            bool startAdding = false;
+            foreach(var number in numbers)
+            {
+                if(!startAdding && number % 100 == 0)
+                {
+                    startAdding = true;
+                }
+                if(startAdding)
+                {
+                    result.Add(number);
+                }
+            }
+            return result;
+        }
+    }
+}

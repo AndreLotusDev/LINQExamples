@@ -1,0 +1,52 @@
+﻿Generating a new collection - refactoring challenge
+Refactor the DoubleLetters method using LINQ.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this methid
+        public static IEnumerable<string> DoubleLetters_Refactored(int countOfLetters)
+        {
+           const int CountOfLettersInEnglishAlphabet = 26;
+            var finalCountOfLetters = Math.Min(countOfLetters, CountOfLettersInEnglishAlphabet);
+        
+            var allLetters = Enumerable.Range('A', finalCountOfLetters).Select(c => (char)c);
+        
+            var result = allLetters.SelectMany(x => allLetters, (x, y) => $"{x}{y}");
+        
+            return result;
+        }
+
+        //do not modify this method
+        public static IEnumerable<string> DoubleLetters(int countOfLetters)
+        {
+            const int CountOfLettersInEnglishAlphabet = 26;
+            var finalCountOfLetters = Math.Min(
+                countOfLetters, 
+                CountOfLettersInEnglishAlphabet);
+
+            var allLetters = new List<char>();
+            var letter = 'A';
+            for (int i = 0; i < finalCountOfLetters; ++i)
+            {
+                allLetters.Add(letter);
+                letter++;
+            }
+
+            var result = new List<string>();
+            foreach(var firstLetter in allLetters)
+            {
+                foreach (var secondLetter in allLetters)
+                {
+                    result.Add($"{firstLetter}{secondLetter}");
+                }
+            }
+            return result;
+        }
+    }
+}

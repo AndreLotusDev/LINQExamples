@@ -1,0 +1,21 @@
+﻿SelectMany - coding exercise 1
+Implement the BuildCartesianProduct method, which given a collection of unique numbers will return the Cartesian product for those numbers as strings.
+
+For example, for input {1,2,5} the result shall be {"1,1", "1,2", "1,5", "2,1", "2,2", "2,5", "5,1", "5,2", "5,5" }
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static IEnumerable<string> BuildCartesianProduct(
+            HashSet<int> numbers)
+        {
+            //TODO your code goes here
+            return numbers.SelectMany(s => numbers, (n1, n2) => $"{n1},{n2}");
+        }
+    }
+}

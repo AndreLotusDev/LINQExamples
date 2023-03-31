@@ -1,0 +1,30 @@
+﻿Concat and Union - coding exercise 2
+Implement the CleanWord method, which given a string that can consist of letters and non-letter characters, will return a new string, where all letters proceed the non-letter characters. The non-letter characters should be unique in the result.
+
+For example:
+
+for input "f_o!_!x" the result will be "fox_!". Please note that only the first "!" is present in the result according to this rule "The non-letter characters should be unique in the result."
+
+for input "d_3uc(k))" the result will be "duck_3()". Please note that only the first ")" is present in the result according to this rule "The non-letter characters should be unique in the result."
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static string CleanWord(string word)
+        {
+            var wordAsArray = word.ToCharArray();
+
+            var wordLetters = wordAsArray.Where(c => char.IsLetter(c));
+            var wordNonLetters = wordAsArray.Where(c => !char.IsLetter(c)).Distinct();
+        
+            return new string(wordLetters.Concat(wordNonLetters).ToArray());
+        }
+    }
+}

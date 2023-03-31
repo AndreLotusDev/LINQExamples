@@ -1,0 +1,23 @@
+﻿Collection type change - coding exercise 2
+Implement the CreateLookupByDivisibilityBy2 method, which given a collection of numbers will create a Lookup with the key being a boolean saying if the number is divisible by 2, and the value will be all numbers for whom this boolean says if they are divisible by 2.
+
+For example, for input {1,2,4,5,6,7,9}, the result shall be a Lookup with two keys and the following values:
+
+[true] = {2,4,6}
+
+[false] = {1,5,7,9}
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static ILookup<bool, int> CreateLookupByDivisibilityBy2(IEnumerable<int> input)
+        {
+            return input.ToLookup(l => l % 2 == 0);
+        }
+    }
+}

@@ -1,0 +1,62 @@
+﻿Select - coding exercise 2
+Imagine you work on an application that retrieves data from scanned paper documents. Those documents contain personal data which you want to convert to C# objects.
+
+Implement the PeopleFromString method, which given a single string containing personal data of multiple people, will return a collection of people. If a person's data is not valid and can't be properly parsed, this person should not be included in the result collection.
+
+For example, for an input string:
+
+"John Smith, 1983/08/21;Jane Doe, 1993/12/21;Francis Brown, invalid date here"
+
+...the result shall be a collection of two people: John Smith and Jane Doe. We shall not include Francis Brown, because his date of birth is not valid and can't be parsed to a valid DateTime.
+
+As you can see in the example the separator between each person's data is ";", and the full name and the date of birth are separated with ",".
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+       public static IEnumerable<Person> PeopleFromString(string input)
+        {
+            return input.Split(';')
+        .Select(s => s.Split(','))
+        .Where(a => {
+            DateTime date;
+            return a.Length == 2 && DateTime.TryParse(a[1], out date);
+        })
+        .Select(a =>
+        {
+            var nameParts = a[0].Trim().Split(' ');
+            var person = new Person
+            {
+                FirstName = nameParts[0],
+                LastName = nameParts[1],
+                DateOfBirth = DateTime.Parse(a[1])
+            };
+            return person;
+        });
+        }
+    }
+        
+    public class Person : IEquatable<Person>
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName} born on {DateOfBirth.ToString("d")}";
+        }
+        
+        public bool Equals(Person other)
+        {
+            return FirstName == other.FirstName &&
+                   LastName == other.LastName &&
+                   DateOfBirth == other.DateOfBirth;
+        }
+    }
+}

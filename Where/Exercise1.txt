@@ -1,0 +1,42 @@
+﻿Where - coding exercise 1
+Let's define a Student class. A student has a collection of Marks, which are numbers. We could calculate the average mark for each student, for example, if a student's marks are 3,4,5, the average mark for this student is 4.
+
+Implement the GetScholarshipCandidates method, which will find all those students, whose average mark is above 4.6.
+
+For example, let's consider students:
+
+Cathy has marks 4,4,6 which gives an average of 4.66
+
+Martin has marks 5,5,5,3 which gives an average of 4.5
+
+Bethy has marks of 6,5,5,3 which gives an average of 4.75
+
+For those students, the GetScholarshipCandidates method shall return the collection of Students, with Cathy and Bethy in it.
+
+If a student has no marks at all, we assume their average mark is 0.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static IEnumerable<Student> GetScholarshipCandidates(IEnumerable<Student> students)
+        {
+            return students.Where(w => w.Marks.Any() ? w.Marks.Average() > 4.6 : false);
+        }
+    }
+    
+    public class Student
+    {
+        public string Name {get; set;}
+        public IEnumerable<int> Marks {get; set;}
+        
+        public override string ToString()
+        {
+            return $"{Name} with marks ({string.Join(", ", Marks)})";
+        }
+    }
+}

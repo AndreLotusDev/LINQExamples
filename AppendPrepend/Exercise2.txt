@@ -1,0 +1,38 @@
+﻿Prepend and Append - coding exercise 2
+Implement the RemoveDuplicatesFromStartAndEnd method, which given a collection of ordered numbers, will remove the duplicate occurrences of the first and the last number in the collection.
+
+For example:
+
+for numbers {2, 2, 2, 5, 6, 6 ,6 , 7, 7, 7} the result shall be {2, 5, 6, 6, 6 , 7}. Please note that only duplicates of 2 and 7 were removed, because they are the first and the last numbers. The duplicates of 6 have not been removed.
+
+for numbers {2, 5, 6, 6 ,6 , 7, 7, 7} the result shall be {2, 5, 6, 6, 6 , 7}. Please note that only duplicates of 2 and 7 were removed, because they are the first and the last numbers. The duplicates of 6 have not been removed.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static IEnumerable<int> RemoveDuplicatesFromStartAndEnd(IEnumerable<int> numbers)
+        {
+            if (numbers == null || !numbers.Any())
+            {
+                return numbers;
+            }
+        
+            var firstNumber = numbers.First();
+            var lastNumber = numbers.Last();
+        
+            numbers = numbers.SkipWhile(n => n == firstNumber);
+            numbers = numbers.Prepend(firstNumber);
+        
+            numbers = numbers.Reverse();
+            numbers = numbers.SkipWhile(n => n == lastNumber);
+            numbers = numbers.Prepend(lastNumber);
+        
+            return numbers.Reverse();
+        }
+    }
+}

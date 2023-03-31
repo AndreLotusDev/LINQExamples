@@ -1,0 +1,17 @@
+﻿OfType - coding exercise 1
+Implement the GetTheFirstInteger method, which given a collection of objects, will return the first integer from this collection. If no integer is present, it shall return null.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static int? GetTheFirstInteger(IEnumerable<object> objects)
+        {
+             return objects.OfType<int?>().FirstOrDefault() ?? (int?)null;
+        }
+    }
+}

@@ -1,0 +1,58 @@
+﻿SelectMany - refactoring challenge
+Refactor the SegmentsLengths method using LINQ.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static Dictionary<string, double> SegmentsLengths_Refactored(
+            IEnumerable<Point> starts, IEnumerable<Point> ends)
+        {
+             return starts.SelectMany(s => ends, (s, e) =>
+    {
+        var length = Math.Sqrt(Math.Pow(e.X - s.X, 2) + Math.Pow(e.Y - s.Y, 2));
+        var key = $"Start: ({s}), End: ({e})";
+
+        return new { key, length };
+    }).ToDictionary(d => d.key, d => d.length);
+        }
+        
+        //do not modify this method
+        public static Dictionary<string, double> SegmentsLengths(
+            IEnumerable<Point> starts, IEnumerable<Point> ends)
+        {
+            var result = new Dictionary<string, double>();
+            foreach (var startPoint in starts)
+            {
+                foreach(var endPoint in ends)
+                {
+                    var length = SegmentLength(startPoint, endPoint);
+                    var key = $"Start: ({startPoint}), End: ({endPoint})";
+                    result[key] = length;
+                }
+            }
+            return result;
+        }
+        
+        public static double SegmentLength(Point start, Point end)
+        {
+            return Math.Sqrt((Math.Pow(start.X - end.X, 2) + Math.Pow(start.Y - end.Y, 2)));
+        }
+    }
+
+    public struct Point
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        public override string ToString()
+        {
+            return $"X: {X}, Y: {Y}";
+        }
+    }
+}

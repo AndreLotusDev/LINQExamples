@@ -1,0 +1,33 @@
+﻿Generating a new collection - coding exercise 2
+Implement the BuildTree method, which given a number of levels, will return a string representation of a tree. For example, for 5 levels the result should be a string like this:
+
+"*
+
+**
+
+***
+
+****
+
+*****"
+
+This tree is built of 5 levels, each consisting of '*' characters and ending with the newline symbol.
+
+Remember that to get the new line character, you can use the Environment.NewLine property. It will return "\n" when running on Unix systems, and "\r\n" when running on Windows (the new line symbol is different for those two systems). This way, no matter where your code is run, it will work correctly.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static string BuildTree(int levels)
+        {
+            return string.Join(Environment.NewLine, Enumerable.Range(1, levels)
+                .Select(i => new string('*', i)));
+        }
+    }
+}

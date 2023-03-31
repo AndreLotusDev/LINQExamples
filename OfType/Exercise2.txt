@@ -1,0 +1,17 @@
+﻿OfType - coding exercise 2
+Implement the AreAllStringsUpperCase method which will check if all strings present in the objects collection are upper case. If there is no string at all in this collection, the result should be true.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static bool AreAllStringsUpperCase(IEnumerable<object> objects)
+        {
+            return objects.OfType<string>().All(a => a.All(b => b == char.ToUpper(b)));
+        }
+    }
+}

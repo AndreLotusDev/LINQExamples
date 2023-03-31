@@ -1,0 +1,41 @@
+﻿Prepend and Append - coding exercise 1
+Using LINQ, implement the AddStartAndEndMarkers which given a collection of words, will add "START" at the beginning and "END" at the end, unless those markers were already present.
+
+For example:
+
+For input {"AAA", "BBB"} the result shall be {"START", "AAA", "BBB", "END"}
+
+For input {"START", "AAA", "BBB"} the result shall be {"START", "AAA", "BBB", "END"}
+
+For input {"AAA", "BBB", "END"} the result shall be {"START", "AAA", "BBB", "END"}
+
+For input {"START", "AAA", "BBB", "END"} the result shall be {"START", "AAA", "BBB", "END"}
+
+We don't care if words "START" and "END" are anywhere else in the collection.
+
+For example:
+
+For input {"AAA", "START",  "END", "BBB",  "START"} the result shall be {"START", "AAA", "START",  "END", "BBB",  "START", "END"}
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static IEnumerable<string> AddStartAndEndMarkers(IEnumerable<string> words)
+        {
+            if(words.ElementAt(0) != "START") {
+                words = words.Prepend("START");
+            }
+            
+            if(words.ElementAt(words.Count() -1) != "END") {
+                words = words.Append("END");
+            }
+            
+            return words;
+        }
+    }
+}
