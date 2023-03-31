@@ -7,61 +7,63 @@ Inside of each example we have the program.cs with the example then 1,2,3 exerci
 
 The exercise were took from https://www.udemy.com/course/linq-tutorial-master-the-key-csharp-library/
 
+<hr/>
+
 The Linq libraries functions are:
 
-Aggregate
-All
-Any
-Append
-AsEnumerable
-Average
-Cast
-Concat
-Contains
-Count
-DefaultIfEmpty
-Distinct
-ElementAt
-ElementAtOrDefault
-Empty
-Except
-First
-FirstOrDefault
-GroupBy
-GroupJoin
-Intersect
-Join
-Last
-LastOrDefault
-LongCount
-Max
-Min
-OfType
-OrderBy
-OrderByDescending
-Prepend
-Range
-Repeat
-Reverse
-Select
-SelectMany
-SequenceEqual
-Single
-SingleOrDefault
-Skip
-SkipLast
-SkipWhile
-Sum
-Take
-TakeLast
-TakeWhile
-ThenBy
-ThenByDescending
-ToArray
-ToDictionary
-ToHashSet
-ToList
-ToLookup
-Union
-Where
-Zip
+Aggregate <br/> 
+All <br/> 
+Any <br/> 
+Append <br/> 
+AsEnumerable <br/> 
+Average <br/> 
+Cast <br/> 
+Concat <br/> 
+Contains <br/> 
+Count <br/> 
+DefaultIfEmpty <br/> 
+Distinct <br/> 
+ElementAt <br/> 
+ElementAtOrDefault <br/> 
+Empty <br/> 
+Except <br/> 
+First <br/> 
+FirstOrDefault <br/> 
+GroupBy <br/> 
+GroupJoin <br/> 
+Intersect <br/> 
+Join <br/> 
+Last <br/> 
+LastOrDefault <br/> 
+LongCount <br/> 
+Max <br/> 
+Min <br/> 
+OfType <br/> 
+OrderBy <br/> 
+OrderByDescending <br/> 
+Prepend <br/> 
+Range <br/> 
+Repeat <br/> 
+Reverse <br/> 
+Select <br/> 
+SelectMany <br/> 
+SequenceEqual <br/> 
+Single <br/> 
+SingleOrDefault <br/> 
+Skip <br/> 
+SkipLast <br/> 
+SkipWhile <br/> 
+Sum <br/> 
+Take <br/> 
+TakeLast <br/> 
+TakeWhile <br/> 
+ThenBy <br/> 
+ThenByDescending <br/> 
+ToArray <br/> 
+ToDictionary <br/> 
+ToHashSet <br/> 
+ToList <br/> 
+ToLookup <br/> 
+Union <br/> 
+Where <br/> 
+Zip <br/> 
