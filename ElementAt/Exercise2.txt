@@ -1,0 +1,33 @@
+﻿ElementAt - refactoring challenge
+Using LINQ, refactor the IsEmptyAtIndex method.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static bool IsEmptyAtIndex_Refactored(IEnumerable<string> words, int index)
+        {
+            return string.IsNullOrEmpty(words.ElementAtOrDefault(index));
+        }
+        
+        //do not modify this method
+        public static bool IsEmptyAtIndex(IEnumerable<string> words, int index)
+        {
+            var array = words.ToArray();
+            if(index < 0 || index >= array.Length)
+            {
+                return true;
+            }
+            if(string.IsNullOrEmpty(array[index]))
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+}

@@ -1,0 +1,62 @@
+﻿
+Single - coding exercise 2
+Implement the GetSingleElementCollection method, which given a nested collection of integers will return the only collection which contains only a single element.
+
+For example, for numberCollections parameter like this:
+
+numberCollections[0] = {1,2,3}
+
+numberCollections[1] = {4}
+
+numberCollections[2] = {5,6}
+
+...the result shall be numberCollections[1], because it is the only single-element collection in the input parameter
+
+If there is no single-element list present, or there is more than one list like that, an InvalidOperationException should be thrown.
+
+For example, for numberCollections parameter like this:
+
+numberCollections[0] = {1,2,3}
+
+numberCollections[1] = {5,6}
+
+...InvalidOperationException should be thrown, because there is no single-element collection here.
+
+For example, for numberCollections parameter like this:
+
+numberCollections[0] = {1,2,3}
+
+numberCollections[1] = {4}
+
+numberCollections[2] = {5,6}
+
+numberCollections[3] = {7}
+
+...InvalidOperationException should be thrown, because there are two single-element collections here.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static IEnumerable<int> GetSingleElementCollection(IEnumerable<IEnumerable<int>> numberCollections)
+        {
+            var singleElementCollection = numberCollections.SingleOrDefault(c => c.Count() == 1);
+            if (singleElementCollection == null)
+            {
+                throw new InvalidOperationException("No single-element collection found.");
+            }
+            else if (numberCollections.Count(c => c.Count() == 1) > 1)
+            {
+                throw new InvalidOperationException("More than one single-element collection found.");
+            }
+            else
+            {
+                return singleElementCollection;
+            }
+        }
+    }
+}

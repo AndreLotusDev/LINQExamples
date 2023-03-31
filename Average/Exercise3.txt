@@ -1,0 +1,41 @@
+﻿Average - refactoring challenge
+Refactor the CalculateAverageHeight using LINQ.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static float CalculateAverageHeight_Refactored(List<float?> heights, float defaultIfNull)
+        {
+            if (heights == null) return 0;
+            return heights.Any() ? heights.Average(x => x ?? defaultIfNull) : 0;
+        }
+
+        //do not modify this method
+        public static float CalculateAverageHeight(List<float?> heights, float defaultIfNull)
+        {
+            if (heights == null || heights.Count == 0)
+            {
+                return 0;
+            }
+            var sum = 0f;
+            foreach (var height in heights)
+            {
+                if (height == null)
+                {
+                    sum += defaultIfNull;
+                }
+                else
+                {
+                    sum += height.Value;
+                }
+            }
+            return sum / heights.Count;
+        }
+    }
+}

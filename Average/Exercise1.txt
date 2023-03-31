@@ -1,0 +1,55 @@
+﻿Average - coding exercise 1
+Let's define a class SnowFallData that holds the information about snowfall in months of a given year. For example, for the year 2020, we could have:
+
+20 centimeters of snowfall in January
+
+25 centimeters  in February
+
+5 centimeters  in March
+
+0 centimeters  in April
+
+etc. 
+
+Implement the AverageSnowFall method that will calculate the average snowfall in centimeters for a given SnowFallData object. This method should return null if the object is null, or its monthly snowfall data is null or the count of MonthlySnowFallDataItems is not 12 (one for each month).
+
+Este tema é abordado em
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static float? AverageSnowFall(SnowFallData snowFallData)
+        {
+            if (snowFallData?.MonthlySnowFallDataItems?.Any() ?? false)
+            {
+                if (snowFallData.MonthlySnowFallDataItems.Count < 12)
+                {
+                    return (float?)null;
+                }
+
+                return snowFallData.MonthlySnowFallDataItems.Average(a => a.SnowfallInCentimeters);
+            }
+            else
+            {
+                return (float?)null;
+            }
+        }
+    }
+
+    public class SnowFallData
+    {
+        public int Year { get; set; }
+        public List<MonthlySnowFallData> MonthlySnowFallDataItems { get; set; }
+    }
+
+    public class MonthlySnowFallData
+    {
+        public int Month { get; set; }
+        public float SnowfallInCentimeters { get; set; }
+    }
+}

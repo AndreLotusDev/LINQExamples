@@ -1,0 +1,37 @@
+﻿ElementAt - coding exercise 1
+Using LINQ, implement the IsTheNumberAtIndexTheLargest method. This method should check if the number at the given index is the largest number in the collection.
+
+For example,  IsTheNumberAtIndexTheLargest (new int[] {1,2,4,4}, 0) should return false, because the number at index 0 is 1, and it is not the largest in this collection.
+
+If there are other numbers equally large, the result should be true. For example, IsTheNumberAtIndexTheLargest (new int[] {1,2,4,4}, 3) should return true, because the number at index 3 has a value of 4, and it is one of the largest numbers in the collection.
+
+If no such index is present in the collection, the method should return false.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static bool IsTheNumberAtIndexTheLargest(IEnumerable<int> numbers, int index)
+        {
+            if(numbers == null || numbers.Count() == 0) return false;
+            
+            int maxNumber = numbers.Max();
+            
+            try {
+                int indexNumber = numbers.ElementAt(index);
+                
+                if(maxNumber == indexNumber) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch(Exception e) {
+                return false;
+            }
+        }
+    }
+}

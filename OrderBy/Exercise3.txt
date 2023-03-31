@@ -1,0 +1,28 @@
+﻿OrderBy - refactoring challenge
+Using LINQ, refactor the OrderByMonth method. Avoid modification of the input list, which happens in the OrderByMonth method.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static IEnumerable<DateTime> OrderByMonth_Refactored(List<DateTime> dates)
+        {
+            return dates.OrderBy(o => o.Month);
+        }
+        
+        //do not modify this method
+        public static IEnumerable<DateTime> OrderByMonth(List<DateTime> dates)
+        {
+            dates.Sort((left, right) =>
+            {
+                return left.Month.CompareTo(right.Month);
+            });
+            return dates;
+        }
+    }
+}

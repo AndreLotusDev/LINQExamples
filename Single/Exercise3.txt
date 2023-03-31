@@ -1,0 +1,52 @@
+﻿Single - refactoring challenge
+Refactor the GetSingleDay method using LINQ.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static DateTime? GetSingleDay_Refactored(IEnumerable<DateTime> dates, DayOfWeek dayOfWeek)
+        {
+            try
+            {
+                DateTime date = dates.SingleOrDefault(d => d.DayOfWeek == dayOfWeek);
+        
+                if (date == DateTime.MinValue)
+                {
+                    return null;
+                }
+        
+                return date;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        
+        //do not modify this method
+        public static DateTime? GetSingleDay(IEnumerable<DateTime> dates, DayOfWeek dayOfWeek)
+        {
+            var count = 0;
+            DateTime? result = null;
+            foreach(var date in dates)
+            {
+                if(date.DayOfWeek == dayOfWeek)
+                {
+                    result = date;
+                    count++;
+                }
+            }
+            if(count == 1)
+            {
+                return result;
+            }
+            return null;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+﻿Sum - refactoring challenge
+Refactor the HasAnyStudentSumOfMarksLargerThan100 method using LINQ.
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        //TODO implement this method
+        public static bool HasAnyStudentSumOfMarksLargerThan100_Refactored(IEnumerable<Student> students)
+        {
+           return students.Any(a => a.Marks.Sum() > 100);
+        }
+        
+        //do not modify this method
+        public static bool HasAnyStudentSumOfMarksLargerThan100(IEnumerable<Student> students)
+        {
+            foreach(var student in students)
+            {
+                var sumOfMarks = 0;
+                foreach(var mark in student.Marks)
+                {
+                    sumOfMarks += mark;
+                }
+                if(sumOfMarks > 100)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+    
+    public class Student
+    {
+        public IEnumerable<int> Marks { get; set; }
+    }
+}

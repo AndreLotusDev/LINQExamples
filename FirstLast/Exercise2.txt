@@ -1,0 +1,28 @@
+﻿First and Last - coding exercise 2
+Implement the GetYoungest method, which, given a collection of people, will return the youngest person from this collection. If the collection is empty, the result should be null.
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+namespace Coding.Exercise
+{
+    public class Exercise
+    {
+        public static Person GetYoungest(IEnumerable<Person> people)
+        {
+            return people.OrderByDescending(o => o.DateOfBirth).FirstOrDefault();
+        }
+    }
+    
+    public class Person
+    {
+        public string Name {get; set;}
+        public DateTime DateOfBirth {get; set;}
+        
+        public override string ToString()
+        {
+            return $"Name: {Name}, DateOfBirth: {DateOfBirth}";
+        }
+    }
+}
