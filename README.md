@@ -1,7 +1,9 @@
 # LINQExamples
 
 This repo shows some example of all (or nearly) linq functions that we can use. <br/> 
-Inside of each example we have the program.cs with the example then 1,2,3 exercises for each example.
+Inside of each example we have the program.cs with the example then 1,2,3 exercises for each example. <br/> 
+
+Feel free to add more examples. <br/> 
 
 <hr/>
 
